@@ -7,6 +7,7 @@ from emailtemplates.helpers import mass_mailing_recipients
 def recipients_test_function():
     return ['user@example.com', 'another@example.com']
 
+
 class HelpersTest(TestCase):
 
     def test_mass_mailing_recipients(self):
@@ -15,7 +16,7 @@ class HelpersTest(TestCase):
         User.objects.create(username="john", email="john@example.com", is_active=False)
         User.objects.create(username="paul", is_active=True)
         self.assertEqual(list(mass_mailing_recipients()), ["mike@example.com"])
-    
+
     @override_settings(MASS_EMAIL_RECIPIENTS='emailtemplates.tests.test_helpers.recipients_test_function')
     def test_mass_mailing_recipients_from_settings(self):
         self.assertEqual(mass_mailing_recipients(), ['user@example.com', 'another@example.com'])

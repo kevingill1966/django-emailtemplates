@@ -1,7 +1,7 @@
 # coding=utf-8
 from django.test import TestCase
 
-from ..registry import EmailTemplateRegistry, RegistrationItem, HelpContext
+from emailtemplates.registry import EmailTemplateRegistry, RegistrationItem, HelpContext
 
 
 class HelpContextTest(TestCase):
@@ -115,7 +115,3 @@ class EmailTemplateRegistryTest(TestCase):
         items = template_registry.registration_items()
         self.assertEqual(1, len(items))
         self.assertEqual('hello_template.html', items[0].path)
-
-
-
-

@@ -1,6 +1,5 @@
 # coding=utf-8
 from importlib import import_module
-from string import lower
 
 from django.template.loaders import app_directories
 from django.contrib.auth import get_user_model
@@ -21,10 +20,10 @@ class SubstringMatcher(object):
     """
 
     def __init__(self, containing):
-        self.containing = lower(containing)
+        self.containing = containing.lower()
 
     def __eq__(self, other):
-        return lower(other).find(self.containing) > -1
+        return other.lower().find(self.containing) > -1
 
     def __unicode__(self):
         return 'a string containing "%s"' % self.containing

@@ -56,14 +56,14 @@ class MassEmailMessageTest(TestCase):
         self.assertEqual(mail.outbox[0].body, "<p>Treść emaila</p>")
 
     def test_send_with_attachments(self):
-        attachment = MassEmailAttachment.objects.create(
-            attachment_file=File(open(self.attachment_filepath, 'r'), 'example_file.txt'), 
+        MassEmailAttachment.objects.create(
+            attachment_file=File(open(self.attachment_filepath, 'r'), 'example_file.txt'),
             mass_email_message=self.mass_email_message,
         )
         recipients = ["person@example.com"]
         sent = self.mass_email_message.send(recipients)
         self.assertTrue(sent)
         self.assertEqual(
-            mail.outbox[0].attachments, 
+            mail.outbox[0].attachments,
             [('example_file.txt', u'Some content of example file.', 'text/plain')],
         )

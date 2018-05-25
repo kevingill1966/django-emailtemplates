@@ -1,5 +1,4 @@
 # coding=utf-8
-import os
 import logging
 from smtplib import SMTPException
 
@@ -78,7 +77,7 @@ class EmailFromTemplate(object):
             logger.warning("Can't find %s template in the filesystem, will use very default one." % path)
         else:
             self._template_source = 'filesystem'
-            
+
     def get_template_object(self):
         if self.template_object:
             return self.template_object
@@ -116,7 +115,7 @@ class EmailFromTemplate(object):
             # NOTE: for template from string Context() is still required!
             message = self.compiled_template.render(Context(self.context))
         self.message = message
-        
+
     def get_message_object(self, send_to, attachment_paths, *args, **kwargs):
         msg = EmailMessage(self.subject, self.message, self.from_email, send_to, *args, **kwargs)
         if attachment_paths:
@@ -131,7 +130,7 @@ class EmailFromTemplate(object):
         @param send_to: recipient email
         @param args: additional args passed to EmailMessage
         @param kwargs: kwargs passed to EmailMessage
-        @param attachment_paths: paths to attachments as received by django EmailMessage.attach_file(path) method 
+        @param attachment_paths: paths to attachments as received by django EmailMessage.attach_file(path) method
         @return: number of sent messages
         """
         msg = self.get_message_object(send_to, attachment_paths, *args, **kwargs)
@@ -139,7 +138,7 @@ class EmailFromTemplate(object):
 
         try:
             self.sent = msg.send()
-        except SMTPException, e:
+        except SMTPException as e:
             logger.error(u'Problem sending email to %s: %s' % (send_to, e))
 
         return self.sent

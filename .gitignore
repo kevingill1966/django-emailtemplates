@@ -37,3 +37,5 @@ nosetests.xml
 
 .idea
 info.txt
+
+.pytest_cache/

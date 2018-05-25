@@ -1,5 +1,4 @@
 # coding=utf-8
-import mock
 import os
 
 from django.conf import settings
@@ -8,11 +7,11 @@ from django.test import TestCase
 from django.utils.html import escape
 from mock import Mock
 
-from ..email import EmailFromTemplate
-from ..email import logger as email_logger
-from ..helpers import substr
-from ..models import EmailTemplate
-from ..registry import email_templates, NotRegistered, EmailTemplateRegistry
+from emailtemplates.email import EmailFromTemplate
+from emailtemplates.email import logger as email_logger
+from emailtemplates.helpers import substr
+from emailtemplates.models import EmailTemplate
+from emailtemplates.registry import email_templates, NotRegistered, EmailTemplateRegistry
 
 
 class CheckEmail(TestCase):
@@ -54,7 +53,7 @@ class EmailFromTemplateTest(CheckEmail):
 
     def test_init_check_email_templates_registry(self):
         with self.assertRaises(NotRegistered):
-            email_template = EmailFromTemplate("some_template.html")
+            EmailFromTemplate("some_template.html")
         email_templates.register("some_template.html")
         email_template = EmailFromTemplate("some_template.html")
         self.assertTrue(email_templates.is_registered("some_template.html"))
@@ -65,7 +64,7 @@ class EmailFromTemplateTest(CheckEmail):
         eft.send(to, attachment_paths=[self.attachment_filepath])
         self.check_email_was_sent(eft, to)
         self.assertEqual(
-            mail.outbox[0].attachments, 
+            mail.outbox[0].attachments,
             [('example_file.txt', u'Some content of example file.', 'text/plain')],
         )
 

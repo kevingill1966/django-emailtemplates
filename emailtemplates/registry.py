@@ -66,7 +66,9 @@ class RegistrationItem(object):
 
     def as_form_help_text(self):
         item_help_text = _(u"<b>USAGE: %s</b>") % self.help_text if self.help_text else u""
-        item_help_context = _(u"<b>CONTEXT:</b><br/>%s") % self.context_description() if self.help_context_obj.get_help_keys() else u""
+        item_help_context = _(u"<b>CONTEXT:</b><br/>%s") % (
+            self.context_description() if self.help_context_obj.get_help_keys() else u""
+        )
         return u"<br/>".join((item_help_text, item_help_context))
 
     def as_form_choice(self):

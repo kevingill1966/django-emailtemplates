@@ -8,8 +8,8 @@ from django.template import TemplateSyntaxError
 from django.utils.safestring import mark_safe
 from django.utils.functional import lazy
 
-from emailtemplates.models import EmailTemplate, MassEmailAttachment, MassEmailMessage
-from emailtemplates.registry import email_templates
+from .models import EmailTemplate, MassEmailAttachment, MassEmailMessage
+from .registry import email_templates
 
 logger = logging.getLogger(__name__)
 

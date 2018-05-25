@@ -6,7 +6,7 @@ from django.db import models
 from django.template import Engine
 from django.utils.translation import ugettext_lazy as _
 
-from emailtemplates.helpers import TemplateSourceLoader, mass_mailing_recipients
+from .helpers import TemplateSourceLoader, mass_mailing_recipients
 
 try:
     from django.utils.timezone import now

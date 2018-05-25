@@ -36,5 +36,6 @@ setup(
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
     install_requires=install_requires,
-    tests_require=tests_require
+    tests_require=tests_require,
+    test_suite='tests',
 )

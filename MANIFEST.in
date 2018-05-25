@@ -1,4 +1,6 @@
 include LICENSE
 include README.rst
+include *.cfg *.ini
 recursive-include emailtemplates/static *
 recursive-include emailtemplates/templates *
+recursive-include tests *
